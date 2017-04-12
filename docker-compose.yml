@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build: .
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: development
+    ports:
+      - 9000:9000
