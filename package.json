@@ -7,7 +7,6 @@
     "node-fetch": "^1.6.3"
   },
   "scripts": {
-    "start": "node index.js",
     "lint": "yarn standard"
   },
   "devDependencies": {
