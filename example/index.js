@@ -1,8 +1,7 @@
-const Bunq = require('./lib/bunq')
-const redis = require('redis')
+const Bunq = require('../lib/bunq')
 const ursa = require('ursa')
 const crypto = require('crypto')
-const config = require('config.js');
+const config = require('./config.js');
 
 const keyPair = ursa.generatePrivateKey(2048)
 const keys = {
