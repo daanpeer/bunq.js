@@ -1,6 +1,9 @@
 const Bunq = require('../lib/bunq.js')
 const sign = require('../lib/helpers/sign')
-const monetary = require('./monetary')
+const Payments = require('../lib/api/Payments');
+
+const {monetaryResponse, paymentsResponse} = require('./responses')
+
 const mockery = require('mockery')
 const sinon = require('sinon')
 const fetch = require('node-fetch')
@@ -30,26 +33,28 @@ describe('Bunq api', () => {
   it('Should retrieve monetaryAccounts', async () => {
     nock(API_URL)
       .get('/v1/user/123/monetary-account')
-      .reply(200, monetary)
+      .reply(200, monetaryResponse)
 
     const data = await this.bunq.monetaryAccounts().list()
 
-    assert.typeOf(data, 'Array')
+    assert.isArray(data)
     assert.typeOf(data[0], 'Object')
   })
 
   it('Should retrieve payments based on a monetary account', async () => {
     nock(API_URL)
       .get('/v1/user/123/monetary-account')
-      .reply(200, monetary)
+      .reply(200, monetaryResponse)
 
     nock(API_URL)
       .get('/v1/user/123/monetary-account/1871/payment')
-      .reply(200, {Response: {}})
+      .reply(200, paymentsResponse)
 
     const data = await this.bunq.monetaryAccounts().list()
     const payments = await data[0].payments()
-    console.log(payments)
+
+    assert.isArray(payments)
+    assert.deepEqual(paymentsResponse.Response, payments);
   })
 
 })
