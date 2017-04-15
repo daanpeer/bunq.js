@@ -29,10 +29,7 @@ async function main () {
     const bunq = new Bunq(options)
     await bunq.installation()
     await bunq.device({
-      ipAddresses: [
-        '87.208.240.78',
-        '188.206.70.117'
-      ],
+      ipAddresses: config.ipAddreses,
       description: 'Permitted ips'
     })
     let sessionData = await bunq.session();
