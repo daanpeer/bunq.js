@@ -7,9 +7,16 @@
     "node-fetch": "^1.6.3"
   },
   "scripts": {
-    "lint": "yarn standard"
+    "lint": "yarn standard",
+    "test": "mocha",
+    "test:watch": "yarn test -- --watch"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "mockery": "^2.0.0",
+    "nock": "^9.0.13",
+    "sinon": "^2.1.0",
     "standard": "^10.0.1"
   }
 }
