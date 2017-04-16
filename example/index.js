@@ -35,7 +35,7 @@ async function main () {
     let sessionData = await bunq.session();
 
     bunq.setSessionToken(sessionData.token);
-    const monetaryAccounts = await bunq.monetaryAccounts().list(sessionData.user.id);
+    const monetaryAccounts = await bunq.monetaryAccounts();
 
     const paymentCalls = [];
     monetaryAccounts.forEach(async (account) => {

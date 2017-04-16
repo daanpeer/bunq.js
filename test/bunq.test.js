@@ -100,7 +100,7 @@ describe('Bunq api', () => {
       .get('/v1/user/123/monetary-account')
       .reply(200, monetaryResponse)
 
-    const data = await bunq.monetaryAccounts().list()
+    const data = await bunq.monetaryAccounts()
 
     assert.isArray(data)
     assert.typeOf(data[0], 'Object')
@@ -117,7 +117,7 @@ describe('Bunq api', () => {
       .get('/v1/user/123/monetary-account/1871/payment')
       .reply(200, paymentsResponse)
 
-    const data = await bunq.monetaryAccounts().list()
+    const data = await bunq.monetaryAccounts()
     const payments = await data[0].payments()
 
     assert.isArray(payments)
