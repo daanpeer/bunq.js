@@ -21,12 +21,15 @@ const config = {
 const API_URL = 'https://sandbox.public.api.bunq.com'
 
 const bunqInstance = () => {
-  const stub = sinon.stub({sign}, sign)
+  const stub = sinon.stub({sign}, sign).returns('encrypted')
   const bunq = new Bunq(config)
   bunq.sign = stub
   bunq.user = {id: 123}
   return bunq
 }
+
+// @todo split file into api file and basic bunq tests
+// @todo add tests for installation, device and session requests
 
 describe('Bunq api', () => {
 
@@ -47,16 +50,47 @@ describe('Bunq api', () => {
     assert.equal(bunq.apiUrl, API_URL)
   })
 
-  it('Should should sign headers correctly', async () => {
-    // assert that headers are sorted
-    // assert that the sign method is called with the sorted headers
-    // assert that the new header is added
-    // assert that only x-bunq, cache-control and user-agent headers are added
+  it('Should add the signed header', async () => {
+    const req = nock(API_URL)
+      .post('/v1/device-server')
+      .reply(200, function (uri, requestBody) {
+        assert.isDefined(this.req.headers, 'x-bunq-client-signature')
+        return {}
+      })
 
-    // const headers = {
-    // };
-    //
-    // this.bunq.signHeaders()
+    const bunq = bunqInstance()
+    bunq.installationToken = '123'
+    await bunq.device({ipAddresses: [], description: 'wee'})
+  })
+
+  it('Should should sign headers correctly', async () => {
+    const bunq = bunqInstance()
+
+    const url = 'http://example.com/test'
+    const method = 'POST'
+
+    const headers = {
+      'X-Bunq-test': 'test',
+      'test-header': 'test',
+      'User-Agent': 'test',
+      'Cache-Control': 'test'
+    }
+
+    const body = {
+      'test': 'test'
+    }
+
+    let expectedHeadersToSign = `${method} ${url}`
+    expectedHeadersToSign += '\n'
+    expectedHeadersToSign += 'Cache-Control: test\n'
+    expectedHeadersToSign += 'User-Agent: test\n'
+    expectedHeadersToSign += 'X-Bunq-test: test\n'
+    expectedHeadersToSign += '\n'
+    expectedHeadersToSign += JSON.stringify(body)
+
+    const headersToSign = bunq.signHeaders(headers, body, method, url)
+
+    assert.equal(headersToSign, expectedHeadersToSign)
   })
 
   it('Should retrieve monetaryAccounts', async () => {
