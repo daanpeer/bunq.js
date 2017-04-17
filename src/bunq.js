@@ -14,7 +14,7 @@ export interface BunqInterface {
     method: string,
     endpoint: string,
     body?: { [string]: any },
-    headers?: { [string]: string },
+    header?: { [string]: string },
     sign: boolean
   ): Promise<any>
 }

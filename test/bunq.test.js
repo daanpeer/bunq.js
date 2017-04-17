@@ -1,6 +1,6 @@
 /* global describe, it */
-const Bunq = require('../src/bunq.js')
-const sign = require('../src/helpers/sign')
+const Bunq = require('../lib/bunq.js').default
+const sign = require('../lib/helpers/sign')
 const {monetaryResponse, paymentsResponse} = require('./responses')
 const sinon = require('sinon')
 const nock = require('nock')
@@ -23,6 +23,8 @@ const bunqInstance = () => {
   bunq.user = {id: 123}
   return bunq
 }
+
+console.log(Bunq);
 
 // @todo split file into api file and basic bunq tests
 // @todo add tests for installation, device and session requests
@@ -118,5 +120,4 @@ describe('Bunq api', () => {
     assert.isArray(payments)
     assert.deepEqual(paymentsResponse.Response, payments)
   })
-
 })
