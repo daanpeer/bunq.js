@@ -32,6 +32,9 @@
     "plugins": [
       "flowtype"
     ],
+    "ignore": [
+      "/lib"
+    ],
     "parser": "babel-eslint"
   }
 }
