@@ -1,9 +1,9 @@
 class Api {
-  constructor(client) {
-    this.client = client;
+  constructor (client) {
+    this.client = client
   }
 
-  async get(endpoint) {
+  async get (endpoint) {
     const data = await this.client.performRequest({
       method: 'GET',
       endpoint,
@@ -12,14 +12,14 @@ class Api {
         'X-Bunq-Client-Authentication': this.client.sessionToken,
         'Content-Type': 'application/json'
       }
-    });
+    })
 
     if (!data.Response) {
-      throw Error('Coudln\'t read response');
+      throw Error('Coudln\'t read response')
     }
 
-    return data;
+    return data
   }
 }
 
-module.exports = Api;
+module.exports = Api
