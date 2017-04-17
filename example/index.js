@@ -2,13 +2,6 @@ const Bunq = require('../lib/bunq')
 const ursa = require('ursa')
 const crypto = require('crypto')
 const config = require('./config.js');
-const redis = require('redis');
-const bluebird = require("bluebird");
-
-bluebird.promisifyAll(redis.RedisClient.prototype);
-bluebird.promisifyAll(redis.Multi.prototype);
-
-// const client = redis.createClient({ host: 'redis' });
 
 async function generateKeyPair() {
   const keyPair = ursa.generatePrivateKey(2048)
@@ -38,12 +31,16 @@ async function main () {
     const monetaryAccounts = await bunq.monetaryAccounts();
 
     const paymentCalls = [];
-    monetaryAccounts.forEach(async (account) => {
+    monetaryAccounts.forEach((account) => {
       paymentCalls.push(account.payments());
     });
 
     const payments = await Promise.all(paymentCalls);
-    console.log(payments);
+
+    payments.forEach((payment) => {
+      console.log(JSON.stringify(payment, null, 2))
+    })
+
   } catch (err) {
     console.log(err);
   }
