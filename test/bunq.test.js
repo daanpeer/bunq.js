@@ -4,7 +4,6 @@ const Payments = require('../lib/api/Payments')
 
 const {monetaryResponse, paymentsResponse} = require('./responses')
 
-const mockery = require('mockery')
 const sinon = require('sinon')
 const fetch = require('node-fetch')
 const nock = require('nock')
