@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import crypto from 'crypto'
 
 const sign = (privateKey, data) => {
   const sign = crypto.createSign('sha256')
@@ -6,4 +6,4 @@ const sign = (privateKey, data) => {
   return sign.sign({key: privateKey}, 'base64')
 }
 
-module.exports = sign
+export { sign as default }

@@ -1,2 +1,2 @@
 /* @flow */
-module.exports = (): string => Math.random().toString(36).substring(7)
+export default (): string => Math.random().toString(36).substring(7)

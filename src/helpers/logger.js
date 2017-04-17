@@ -1,15 +1,15 @@
 const log = (data) => {
   console.log('==============')
   data.forEach((item) => {
-    let line;
-    if (typeof(item) === 'object') {
-      line = JSON.stringify(item, null, 2);
+    let line
+    if (typeof item === 'object') {
+      line = JSON.stringify(item, null, 2)
     } else {
-      line = item;
+      line = item
     }
-    console.log(line);
-  });
+    console.log(line)
+  })
   console.log('==============')
-};
+}
 
-module.exports = log;
+export { log as default }

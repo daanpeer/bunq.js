@@ -1,19 +1,25 @@
  /* @flow */
-
-const fetch = require('node-fetch')
-const {Headers} = require('node-fetch')
-const crypto = require('crypto')
-const {log, sign} = require('./helpers')
-const randomString = require('./helpers/randomString');
-const sortObject = require('./helpers/sortObject');
-const MonetaryAccounts = require('./api/MonetaryAccounts')
+import fetch, { Headers } from 'node-fetch'
+import { log, sign, randomString, sortObject } from './helpers'
+import MonetaryAccounts from './api/MonetaryAccounts'
 
 const API_SANDBOX_URL = 'https://sandbox.public.api.bunq.com'
-const API_URL = 'https://api.bunq.com';
+const API_URL = 'https://api.bunq.com'
 const API_VERSION = 'v1'
 
-class Bunq {
+export interface BunqInterface {
+  sessionToken: string,
+  user: any,
+  performRequest (
+    method: string,
+    endpoint: string,
+    body?: { [string]: any },
+    headers?: { [string]: string },
+    sign: boolean
+  ): Promise<any>
+}
 
+export default class Bunq implements BunqInterface {
   apiUrl: string
   apiKey: string
   keyPair: Object
@@ -27,15 +33,15 @@ class Bunq {
 
   constructor (options: { apiKey: string, sandbox: boolean, debug: boolean, keyPair: {[string]: string} }) {
     if (!options) {
-      throw Error('Please specify the required options');
+      throw Error('Please specify the required options')
     }
 
     let {
       apiKey,
       sandbox,
       debug,
-      keyPair,
-    } = options;
+      keyPair
+    } = options
 
     if (!apiKey) {
       throw Error('Please specify an api key in order to use the Bunq API')
@@ -46,7 +52,7 @@ class Bunq {
     }
 
     if (sandbox === undefined) {
-      sandbox = true;
+      sandbox = true
     }
 
     this.apiUrl = sandbox ? API_SANDBOX_URL : API_URL
@@ -84,7 +90,7 @@ class Bunq {
   }
 
   async session (): { [any]: any } {
-    const data = await this.performRequest(
+    const data: { [any]: any } = await this.performRequest(
       'POST',
       'session-server',
       {secret: this.apiKey},
@@ -120,8 +126,8 @@ class Bunq {
     return new MonetaryAccounts(this).list()
   }
 
-  signHeaders (headers: { [string]: string }, body: { [string]: any }, method: string, endpoint: string) {
-    headers = sortObject(headers);
+  signHeaders (headers: { [string]: string }, body?: { [string]: any }, method: string, endpoint: string) {
+    headers = sortObject(headers)
 
     let headersToSign = `${method} ${endpoint}`
     headersToSign += '\n'
@@ -141,13 +147,13 @@ class Bunq {
       log(['Signing headers', headersToSign])
     }
 
-    return headersToSign;
+    return headersToSign
   }
 
   async performRequest (
     method: string,
     endpoint: string,
-    body: { [string]: any },
+    body?: { [string]: any },
     headers?: { [string]: string },
     sign: boolean
   ): Promise<any> {
@@ -165,8 +171,8 @@ class Bunq {
     }, headers || {})
 
     if (sign) {
-      const headersToSign = this.signHeaders(newHeaders, body, method, requestEndpoint);
-      newHeaders['X-Bunq-Client-Signature'] = this.sign(this.keyPair.private, headersToSign);
+      const headersToSign = this.signHeaders(newHeaders, body, method, requestEndpoint)
+      newHeaders['X-Bunq-Client-Signature'] = this.sign(this.keyPair.private, headersToSign)
     }
 
     if (this.debug) {
@@ -189,5 +195,3 @@ class Bunq {
     return response.json()
   }
 }
-
-module.exports = Bunq

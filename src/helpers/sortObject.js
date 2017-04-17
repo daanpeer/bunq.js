@@ -10,4 +10,4 @@ const sortObject = (object: { [string]: string }): { [string]: string } => {
   return sortedObject
 }
 
-module.exports = sortObject
+export { sortObject as default }

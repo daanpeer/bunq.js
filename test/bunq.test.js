@@ -1,3 +1,4 @@
+/* flow */
 const Bunq = require('../lib/bunq.js')
 const sign = require('../lib/helpers/sign')
 const Payments = require('../lib/api/Payments')
@@ -59,7 +60,7 @@ describe('Bunq api', () => {
 
     const bunq = bunqInstance()
     bunq.installationToken = '123'
-    await bunq.device({ipAddresses: [], description: 'wee'})
+    await bunq.device([], 'wee')
   })
 
   it('Should should sign headers correctly', async () => {
