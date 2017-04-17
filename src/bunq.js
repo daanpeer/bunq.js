@@ -131,7 +131,7 @@ export default class Bunq implements BunqInterface {
 
     let headersToSign = `${method} ${endpoint}`
     headersToSign += '\n'
-    Object.keys(headers).forEach((header) => {
+    Object.keys(headers).forEach((header: string) => {
       // Only include X-Bunq, Cache-Control and User-Agent headers
       if (header.includes('X-Bunq') || header.includes('Cache-Control') || header.includes('User-Agent')) {
         headersToSign += `${header}: ${headers[header]}\n`
@@ -179,7 +179,7 @@ export default class Bunq implements BunqInterface {
       log([requestUrl, newHeaders])
     }
 
-    const response = await this.fetch(requestUrl, {
+    const response: { [any]: any } = await this.fetch(requestUrl, {
       method,
       headers: new Headers(newHeaders),
       body: JSON.stringify(body)

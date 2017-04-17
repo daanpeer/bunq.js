@@ -1,11 +1,12 @@
-const sortObject = require('./sortObject')
-const randomString = require('./randomString')
-const log = require('./logger')
-const sign = require('./sign')
+/* @flow */
+import sortObject from './sortObject'
+import randomString from './randomString'
+import log from './logger'
+import sign from './sign'
 
-module.exports = {
-  sign,
-  log,
+export {
+  sortObject,
   randomString,
-  sortObject
+  log,
+  sign
 }

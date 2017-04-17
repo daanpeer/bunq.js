@@ -1,12 +1,8 @@
-/* flow */
-const Bunq = require('../lib/bunq.js')
-const sign = require('../lib/helpers/sign')
-const Payments = require('../lib/api/Payments')
-
+/* global describe, it */
+const Bunq = require('../src/bunq.js')
+const sign = require('../src/helpers/sign')
 const {monetaryResponse, paymentsResponse} = require('./responses')
-
 const sinon = require('sinon')
-const fetch = require('node-fetch')
 const nock = require('nock')
 const {assert} = require('chai')
 
@@ -32,7 +28,6 @@ const bunqInstance = () => {
 // @todo add tests for installation, device and session requests
 
 describe('Bunq api', () => {
-
   it('Should throw an error when no options are specified', () => {
     assert.throws(() => new Bunq(), 'Please specify the required options')
   })

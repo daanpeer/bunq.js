@@ -1,6 +1,8 @@
-const log = (data) => {
+/* @flow */
+
+const log = (data: Array<any>) => {
   console.log('==============')
-  data.forEach((item) => {
+  data.forEach((item: string | { [any]: any }) => {
     let line
     if (typeof item === 'object') {
       line = JSON.stringify(item, null, 2)
