@@ -1,4 +1,5 @@
-interface BunqInterface {
+/* @flow */
+export interface BunqInterface {
   sessionToken: string,
   user: any,
   performRequest (
@@ -9,5 +10,3 @@ interface BunqInterface {
     sign: boolean
   ): Promise<any>
 }
-
-export { BunqInterface as default }

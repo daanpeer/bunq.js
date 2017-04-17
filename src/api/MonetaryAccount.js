@@ -1,17 +1,18 @@
 /* @flow */
-import BunqInterface from '../BunqInterface'
+import { BunqInterface } from '../BunqInterface'
 import Payments from './Payments'
+import Api from './Api'
 
-export default class MonetaryAccount {
-  client: BunqInterface
+export default class MonetaryAccount extends Api {
   params: {[any]: any}
 
   constructor (client: BunqInterface, params: { [any]: [any] }) {
-    this.client = client
+    super(client)
     this.params = params
   }
 
   payments () {
-    return new Payments(this.client).list(this.params.id)
+    return new Payments(this.client)
+      .list(this.params.id)
   }
 }

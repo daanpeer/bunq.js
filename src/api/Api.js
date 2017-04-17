@@ -1,5 +1,5 @@
 /* @flow */
-import BunqInterface from '../BunqInterface'
+import { BunqInterface } from '../BunqInterface'
 
 class Api {
   client: BunqInterface

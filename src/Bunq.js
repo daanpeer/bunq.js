@@ -64,8 +64,8 @@ export default class Bunq implements BunqInterface {
     this.sessionToken = sessionToken
   }
 
-  device (ipAddresses: Array<string>, description: string): void {
-    this.performRequest(
+  async device (ipAddresses: Array<string>, description: string): Promise<any> {
+    await this.performRequest(
       'POST',
       'device-server',
       {
@@ -91,6 +91,7 @@ export default class Bunq implements BunqInterface {
       user: data.Response[2].UserCompany,
       token: data.Response[1].Token.token
     }
+
     this.user = responseData.user
     this.setSessionToken(responseData.token)
     return responseData

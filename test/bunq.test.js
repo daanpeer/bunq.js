@@ -24,8 +24,6 @@ const bunqInstance = () => {
   return bunq
 }
 
-console.log(Bunq);
-
 // @todo split file into api file and basic bunq tests
 // @todo add tests for installation, device and session requests
 
@@ -48,7 +46,7 @@ describe('Bunq api', () => {
   })
 
   it('Should add the signed header', async () => {
-    const req = nock(API_URL)
+    nock(API_URL)
       .post('/v1/device-server')
       .reply(200, function (uri, requestBody) {
         assert.isDefined(this.req.headers, 'x-bunq-client-signature')
