@@ -1,5 +1,4 @@
 /* @flow */
-
 const log = (data: Array<any>) => {
   console.log('==============')
   data.forEach((item: string | { [any]: any }) => {

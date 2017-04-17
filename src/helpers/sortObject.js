@@ -1,5 +1,4 @@
 /* @flow */
-
 const sortObject = (object: { [string]: string }): { [string]: string } => {
   const sortedObject: { [string]: string } = {}
   Object.keys(object)

@@ -1,5 +1,5 @@
 /* @flow */
-import { BunqInterface } from '../Bunq'
+import BunqInterface from '../BunqInterface'
 import Payments from './Payments'
 
 export default class MonetaryAccount {

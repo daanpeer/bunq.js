@@ -1,34 +1,23 @@
  /* @flow */
 import fetch, { Headers } from 'node-fetch'
 import { log, sign, randomString, sortObject } from './helpers'
+import BunqInterface from './BunqInterface'
 import MonetaryAccounts from './api/MonetaryAccounts'
 
 const API_SANDBOX_URL = 'https://sandbox.public.api.bunq.com'
 const API_URL = 'https://api.bunq.com'
 const API_VERSION = 'v1'
 
-export interface BunqInterface {
-  sessionToken: string,
-  user: any,
-  performRequest (
-    method: string,
-    endpoint: string,
-    body?: { [string]: any },
-    header?: { [string]: string },
-    sign: boolean
-  ): Promise<any>
-}
-
 export default class Bunq implements BunqInterface {
   apiUrl: string
   apiKey: string
-  keyPair: Object
+  keyPair: { [string]: string }
   serverPublicKey: string
   sessionToken: string
   installationToken: string
   debug: boolean
   user: any
-  sign: any
+  sign: (privateKey: string, data: string) => string
   fetch: any
 
   constructor (options: { apiKey: string, sandbox: boolean, debug: boolean, keyPair: {[string]: string} }) {
