@@ -15,12 +15,18 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.2",
     "babel-preset-flow": "^6.23.0",
     "chai": "^3.5.0",
+    "eslint-plugin-flowtype": "^2.30.4",
     "flow-bin": "^0.44.0",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
     "sinon": "^2.1.0",
     "standard": "^10.0.1"
+  },
+  "standard": {
+    "plugins": [ "flowtype" ],
+    "parser": "babel-eslint"
   }
 }
