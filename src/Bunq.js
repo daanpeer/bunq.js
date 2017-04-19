@@ -1,7 +1,7 @@
  /* @flow */
 import fetch, { Headers } from 'node-fetch'
 import { log, sign, randomString, sortObject } from './helpers'
-import BunqInterface from './BunqInterface'
+import { BunqInterface } from './BunqInterface'
 import MonetaryAccounts from './api/MonetaryAccounts'
 
 const API_SANDBOX_URL = 'https://sandbox.public.api.bunq.com'
@@ -18,7 +18,6 @@ export default class Bunq implements BunqInterface {
   debug: boolean
   user: any
   sign: (privateKey: string, data: string) => string
-  fetch: any
 
   constructor (options: { apiKey: string, sandbox: boolean, debug: boolean, keyPair: {[string]: string} }) {
     if (!options) {
@@ -53,7 +52,6 @@ export default class Bunq implements BunqInterface {
     this.debug = debug
     this.user = {}
     this.sign = sign
-    this.fetch = fetch
 
     if (this.debug) {
       log([this.keyPair])
@@ -169,7 +167,7 @@ export default class Bunq implements BunqInterface {
       log([requestUrl, newHeaders])
     }
 
-    const response: { [any]: any } = await this.fetch(requestUrl, {
+    const response: { [any]: any } = await fetch(requestUrl, {
       method,
       headers: new Headers(newHeaders),
       body: JSON.stringify(body)

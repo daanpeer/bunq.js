@@ -24,6 +24,7 @@ const bunqInstance = () => {
   return bunq
 }
 
+// @todo disable sandbox url so no real request can be done
 // @todo split file into api file and basic bunq tests
 // @todo add tests for installation, device and session requests
 
