@@ -1,9 +1,8 @@
 const Bunq = require('../lib/bunq')
 const ursa = require('ursa')
-const crypto = require('crypto')
-const config = require('./config.js');
+const config = require('./config.js')
 
-async function generateKeyPair() {
+async function generateKeyPair () {
   const keyPair = ursa.generatePrivateKey(2048)
   return {
     public: keyPair.toPublicPem('utf8'),
@@ -25,26 +24,24 @@ async function main () {
       ipAddresses: config.ipAddreses,
       description: 'Permitted ips'
     })
-    let sessionData = await bunq.session();
+    let sessionData = await bunq.session()
 
-    bunq.setSessionToken(sessionData.token);
-    const monetaryAccounts = await bunq.monetaryAccounts();
+    bunq.setSessionToken(sessionData.token)
+    const monetaryAccounts = await bunq.monetaryAccounts()
 
-    const paymentCalls = [];
+    const paymentCalls = []
     monetaryAccounts.forEach((account) => {
-      paymentCalls.push(account.payments());
-    });
+      paymentCalls.push(account.payments())
+    })
 
-    const payments = await Promise.all(paymentCalls);
+    const payments = await Promise.all(paymentCalls)
 
     payments.forEach((payment) => {
       console.log(JSON.stringify(payment, null, 2))
     })
-
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
 main()
-
