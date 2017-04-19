@@ -1,5 +1,5 @@
 /* global describe, it */
-const Bunq = require('../lib/bunq.js').default
+const Bunq = require('../lib/Bunq.js').default
 const sign = require('../lib/helpers/sign')
 const {monetaryResponse, paymentsResponse} = require('./responses')
 const sinon = require('sinon')
