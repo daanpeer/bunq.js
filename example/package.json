@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "bunq.js": "^0.0.4",
     "ursa": "^0.9.4"
   },
   "scripts": {
