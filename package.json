@@ -1,6 +1,6 @@
 {
   "name": "bunq.js",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "main": "index.js",
   "license": "MIT",
   "url": "https://github.com/daanpeer/bunq.js",
@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/daanpeer/bunq.js"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "node-fetch": "^1.6.3"
   },

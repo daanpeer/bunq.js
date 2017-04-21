@@ -1,5 +1,5 @@
-import Bunq from './Bunq';
+import Bunq from './Bunq'
 
 export {
-  Bunq as default,
+  Bunq as default
 }

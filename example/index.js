@@ -1,4 +1,4 @@
-const Bunq = require('../lib/bunq').default
+const Bunq = require('bunq.js').default
 const ursa = require('ursa')
 const config = require('./config.js')
 
