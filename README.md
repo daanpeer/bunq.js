@@ -10,8 +10,18 @@ This is an API client for the Bunq API.
 * Run `yarn install`
 * Make sure you got an API key from Bunq
 
+
 ## Usage
-* The Bunq client accepts some options
+* Firstly import the library
+
+`import Bunq from 'bunq.js'`
+
+Or
+
+`const Bunq = require('bunq.js').default`
+
+
+* Then you can use the Bunq client. The Bunq client accepts some options
 
 ```
 {
@@ -25,4 +35,3 @@ This is an API client for the Bunq API.
 An example implementation can be found in `/example`:
 
 * [example](example)
-
