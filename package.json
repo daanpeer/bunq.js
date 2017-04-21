@@ -1,11 +1,10 @@
 {
   "name": "bunq.js",
   "version": "0.0.9",
-  "main": "index.js",
+  "main": "lib/Bunq.js",
   "license": "MIT",
   "url": "https://github.com/daanpeer/bunq.js",
   "email": "daan.gdh@gmail.com",
-  "main": "lib/Bunq.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/daanpeer/bunq.js"
@@ -22,7 +21,8 @@
     "test:watch": "yarn test -- --watch",
     "build": "babel src/ -d lib/",
     "flow": "flow-copy-source lib lib",
-    "prepublishOnly": "yarn lint && yarn test && yarn run build && yarn flow"
+    "prepublishOnly": "yarn lint && yarn test && yarn run build && yarn flow",
+    "precommit": "yarn test && yarn lint"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -35,6 +35,7 @@
     "eslint-plugin-flowtype": "^2.30.4",
     "flow-bin": "^0.44.0",
     "flow-copy-source": "^1.1.0",
+    "husky": "^0.13.3",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
     "sinon": "^2.1.0",
