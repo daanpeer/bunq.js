@@ -6,8 +6,8 @@
   "url": "https://github.com/daanpeer/bunq.js",
   "email": "daan.gdh@gmail.com",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/daanpeer/bunq.js"
+    "type": "git",
+    "url": "https://github.com/daanpeer/bunq.js"
   },
   "dependencies": {
     "node-fetch": "^1.6.3"
@@ -17,7 +17,8 @@
     "test": "yarn build && mocha --compilers js:babel-register",
     "test:watch": "yarn test -- --watch",
     "build": "babel src/ -d lib/",
-    "prepublish": "yarn lint && yarn test && yarn run build"
+    "flow": "flow-copy-source lib lib",
+    "prepublishOnly": "yarn flow && yarn lint && yarn test && yarn run build"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -29,6 +30,7 @@
     "chai": "^3.5.0",
     "eslint-plugin-flowtype": "^2.30.4",
     "flow-bin": "^0.44.0",
+    "flow-copy-source": "^1.1.0",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
     "sinon": "^2.1.0",
