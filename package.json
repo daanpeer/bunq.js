@@ -1,10 +1,14 @@
 {
   "name": "bunq.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "license": "MIT",
   "url": "https://github.com/daanpeer/bunq.js",
   "email": "daan.gdh@gmail.com",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/daanpeer/bunq.js"
+  },
   "dependencies": {
     "node-fetch": "^1.6.3"
   },
@@ -13,7 +17,7 @@
     "test": "yarn build && mocha --compilers js:babel-register",
     "test:watch": "yarn test -- --watch",
     "build": "babel src/ -d lib/",
-    "prepublish": "yarn run build"
+    "prepublish": "yarn lint && yarn test && yarn run build"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
