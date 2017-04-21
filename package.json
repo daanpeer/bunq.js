@@ -1,10 +1,11 @@
 {
   "name": "bunq.js",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "main": "index.js",
   "license": "MIT",
   "url": "https://github.com/daanpeer/bunq.js",
   "email": "daan.gdh@gmail.com",
+  "main": "lib/Bunq.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/daanpeer/bunq.js"
@@ -18,7 +19,7 @@
     "test:watch": "yarn test -- --watch",
     "build": "babel src/ -d lib/",
     "flow": "flow-copy-source lib lib",
-    "prepublishOnly": "yarn lint && yarn test && yarn run build && yarn flow "
+    "prepublishOnly": "yarn lint && yarn test && yarn run build && yarn flow"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

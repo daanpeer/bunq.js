@@ -364,9 +364,9 @@ builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
-bunq.js@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/bunq.js/-/bunq.js-0.0.4.tgz#025c722ba24617ee56ae1e6292de4f56cd4fed9d"
+bunq.js@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/bunq.js/-/bunq.js-0.0.7.tgz#9606360d9ea749207ead41b9d588e9d8e36ffe1e"
   dependencies:
     node-fetch "^1.6.3"
 
