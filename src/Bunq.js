@@ -71,7 +71,7 @@ export default class Bunq implements BunqInterface {
         description: description,
         permitted_ips: ipAddresses
       },
-      undefined,
+      {'X-Bunq-Client-Authentication': this.installationToken},
       true
     )
   }
@@ -164,7 +164,7 @@ export default class Bunq implements BunqInterface {
     }
 
     if (this.debug) {
-      log([requestUrl, newHeaders])
+      log([requestUrl, newHeaders, body])
     }
 
     const response: { [any]: any } = await fetch(requestUrl, {

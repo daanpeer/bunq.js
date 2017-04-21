@@ -1,4 +1,4 @@
-const Bunq = require('bunq.js').default
+const Bunq = require('../lib/bunq').default
 const ursa = require('ursa')
 const config = require('./config.js')
 
@@ -20,10 +20,7 @@ async function main () {
 
     const bunq = new Bunq(options)
     await bunq.installation()
-    await bunq.device({
-      ipAddresses: config.ipAddreses,
-      description: 'Permitted ips'
-    })
+    await bunq.device(config.ipAddreses, 'Bunq example')
     let sessionData = await bunq.session()
 
     bunq.setSessionToken(sessionData.token)
