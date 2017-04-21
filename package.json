@@ -1,8 +1,10 @@
 {
   "name": "bunq.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "license": "MIT",
+  "url": "https://github.com/daanpeer/bunq.js",
+  "email": "daan.gdh@gmail.com",
   "dependencies": {
     "node-fetch": "^1.6.3"
   },
