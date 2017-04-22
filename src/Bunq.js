@@ -1,8 +1,10 @@
- /* @flow */
+/* @flow */
+/* global Response */
 import fetch, { Headers } from 'node-fetch'
 import { log, sign, randomString, sortObject } from './helpers'
 import { BunqInterface } from './BunqInterface'
 import MonetaryAccounts from './api/MonetaryAccounts'
+import type { SessionResponse, InstallationResponse } from './api/responseTypes'
 
 const API_SANDBOX_URL = 'https://sandbox.public.api.bunq.com'
 const API_URL = 'https://api.bunq.com'
@@ -88,8 +90,8 @@ export default class Bunq implements BunqInterface {
     )
   }
 
-  async session (): { [any]: any } {
-    const data: { [any]: any } = await this.performRequest(
+  async session (): Promise<{ user: Object, token: string }> {
+    const data: SessionResponse = await this.performRequest(
       'POST',
       'session-server',
       {secret: this.apiKey},
@@ -108,7 +110,7 @@ export default class Bunq implements BunqInterface {
   }
 
   async installation (): Promise<any> {
-    const data: { [any]: any } = await this.performRequest(
+    const data: InstallationResponse = await this.performRequest(
       'POST',
       'installation',
       {
@@ -179,7 +181,7 @@ export default class Bunq implements BunqInterface {
       log([requestUrl, newHeaders, body])
     }
 
-    const response: { [any]: any } = await fetch(requestUrl, {
+    const response: Response = await fetch(requestUrl, {
       method,
       headers: new Headers(newHeaders),
       body: JSON.stringify(body)
@@ -187,7 +189,7 @@ export default class Bunq implements BunqInterface {
 
     if (!response.ok) {
       if (this.debug) {
-        log([await response.json()])
+        log([response.json()])
       }
       throw Error(`Request to ${requestUrl} failed`)
     }
