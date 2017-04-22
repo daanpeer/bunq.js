@@ -8,5 +8,5 @@ export interface BunqInterface {
     body?: { [string]: any },
     header?: { [string]: string },
     sign: boolean
-  ): Promise<any>
+  ): Promise<Object>
 }

@@ -8,8 +8,8 @@ class Api {
     this.client = client
   }
 
-  async get (endpoint: string, body?: { [any]: any }): any {
-    const data: { [any]: any } = await this.client.performRequest(
+  async get (endpoint: string, body?: { [any]: any }): Promise<Object> {
+    const data: Object = await this.client.performRequest(
       'GET',
       endpoint,
       body,
