@@ -8,6 +8,18 @@ const API_SANDBOX_URL = 'https://sandbox.public.api.bunq.com'
 const API_URL = 'https://api.bunq.com'
 const API_VERSION = 'v1'
 
+type KeyPair = {
+  public: string,
+  private: string,
+}
+
+type BunqOptions = {
+  apiKey: string,
+  sandbox?: boolean,
+  debug: boolean,
+  keyPair: KeyPair
+}
+
 export default class Bunq implements BunqInterface {
   apiUrl: string
   apiKey: string
@@ -19,7 +31,7 @@ export default class Bunq implements BunqInterface {
   user: any
   sign: (privateKey: string, data: string) => string
 
-  constructor (options: { apiKey: string, sandbox: boolean, debug: boolean, keyPair: {[string]: string} }) {
+  constructor (options: BunqOptions) {
     if (!options) {
       throw Error('Please specify the required options')
     }

@@ -1,6 +1,6 @@
 {
   "name": "bunq.js",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "main": "lib/Bunq.js",
   "license": "MIT",
   "url": "https://github.com/daanpeer/bunq.js",

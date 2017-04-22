@@ -1,3 +1,4 @@
+/* @flow */
 import Bunq from './Bunq'
 
 export {
