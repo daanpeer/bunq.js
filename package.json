@@ -20,7 +20,7 @@
     "test": "yarn build && mocha --compilers js:babel-register",
     "test:watch": "yarn test -- --watch",
     "build": "babel src/ -d lib/",
-    "flow": "flow-copy-source lib lib",
+    "flow": "flow-copy-source src lib",
     "prepublishOnly": "yarn lint && yarn test && yarn run build && yarn flow",
     "precommit": "yarn test && yarn lint"
   },
