@@ -77,7 +77,7 @@ export default class Bunq implements BunqInterface {
     this.sessionToken = sessionToken
   }
 
-  async device (ipAddresses: Array<string>, description: string): Promise<any> {
+  async device (ipAddresses: Array<string>, description: string): Promise<void> {
     await this.performRequest(
       'POST',
       'device-server',
@@ -110,7 +110,7 @@ export default class Bunq implements BunqInterface {
     return responseData
   }
 
-  async installation (): Promise<any> {
+  async installation (): Promise<void> {
     const data: InstallationResponse = await this.performRequest(
       'POST',
       'installation',
