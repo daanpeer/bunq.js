@@ -4,6 +4,7 @@ import fetch, { Headers } from 'node-fetch'
 import { log, sign, randomString, sortObject } from './helpers'
 import { BunqInterface } from './BunqInterface'
 import MonetaryAccounts from './api/MonetaryAccounts'
+import MonetaryAccount from './api/MonetaryAccount'
 import type { SessionResponse, InstallationResponse } from './api/responseTypes'
 
 const API_SANDBOX_URL = 'https://sandbox.public.api.bunq.com'
@@ -124,7 +125,7 @@ export default class Bunq implements BunqInterface {
     this.installationToken = data.Response[1].Token.token
   }
 
-  monetaryAccounts () {
+  monetaryAccounts (): Promise<Array<MonetaryAccount>> {
     return new MonetaryAccounts(this).list()
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "bunq.js",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "lib/Bunq.js",
   "license": "MIT",
   "url": "https://github.com/daanpeer/bunq.js",
@@ -21,7 +21,7 @@
     "test": "yarn build && mocha --compilers js:babel-register",
     "test:watch": "yarn test -- --watch",
     "build": "babel src/ -d lib/ && yarn flow",
-    "flow": "flow-copy-source src lib",
+    "flow": "flow-copy-source -v src lib",
     "prepublishOnly": "yarn lint && yarn test && yarn flow",
     "precommit": "yarn test && yarn lint",
     "watch": "nodemon --watch src --exec yarn build"
