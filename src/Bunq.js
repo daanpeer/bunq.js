@@ -159,7 +159,6 @@ export default class Bunq implements BunqInterface {
     headers?: { [string]: string },
     sign: boolean
   ): Promise<Object> {
-    // signing if needed
     const requestEndpoint = `/${API_VERSION}/${endpoint}`
     const requestUrl = `${this.apiUrl}${requestEndpoint}`
 

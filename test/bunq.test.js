@@ -1,3 +1,4 @@
+/* @flow */
 /* global describe, it */
 const Bunq = require('../lib/Bunq.js').default
 const sign = require('../lib/helpers/sign')
@@ -49,7 +50,7 @@ describe('Bunq api', () => {
   it('Should add the signed header', async () => {
     nock(API_URL)
       .post('/v1/device-server')
-      .reply(200, function (uri, requestBody) {
+      .reply(200, function(uri, requestBody) {
         assert.isDefined(this.req.headers, 'x-bunq-client-signature')
         return {}
       })
@@ -116,7 +117,7 @@ describe('Bunq api', () => {
     const data = await bunq.monetaryAccounts()
     const payments = await data[0].payments()
 
-    assert.isArray(payments)
-    assert.deepEqual(paymentsResponse.Response, payments)
+    assert.isArray(payments.Response)
+    assert.deepEqual(paymentsResponse, payments)
   })
 })

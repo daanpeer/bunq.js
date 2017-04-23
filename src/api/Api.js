@@ -1,14 +1,14 @@
 /* @flow */
 import { BunqInterface } from '../BunqInterface'
 
-class Api {
+export default class Api {
   client: BunqInterface
 
   constructor (client: BunqInterface) {
     this.client = client
   }
 
-  async get (endpoint: string, body?: { [any]: any }): Promise<Object> {
+  async get<Object> (endpoint: string, body?: { [any]: any }): Promise<Object> {
     const data: Object = await this.client.performRequest(
       'GET',
       endpoint,
@@ -27,5 +27,3 @@ class Api {
     return data
   }
 }
-
-module.exports = Api

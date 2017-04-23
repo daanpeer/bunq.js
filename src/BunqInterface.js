@@ -1,7 +1,9 @@
 /* @flow */
 export interface BunqInterface {
   sessionToken: string,
-  user: any,
+  user: {
+    id: Number,
+  },
   performRequest (
     method: string,
     endpoint: string,

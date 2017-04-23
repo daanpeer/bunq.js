@@ -2,17 +2,18 @@
 import { BunqInterface } from '../BunqInterface'
 import Payments from './Payments'
 import Api from './Api'
+import type { MonetaryAccountResponse } from './responseTypes'
 
 export default class MonetaryAccount extends Api {
-  params: {[any]: any}
+  data: MonetaryAccountResponse
 
-  constructor (client: BunqInterface, params: { [any]: [any] }) {
+  constructor (client: BunqInterface, data: MonetaryAccountResponse) {
     super(client)
-    this.params = params
+    this.data = data
   }
 
   payments () {
     return new Payments(this.client)
-      .list(this.params.id)
+      .list(this.data.MonetaryAccountBank.id)
   }
 }

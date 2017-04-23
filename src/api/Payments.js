@@ -1,9 +1,9 @@
 /* @flow */
 import Api from './Api'
+import type { PaymentsResponse } from './responseTypes'
 
 export default class Payments extends Api {
-  async list (monetaryId: number): { [any]: any } {
-    const data: { [any]: any } = await this.get(`user/${this.client.user.id}/monetary-account/${monetaryId}/payment`)
-    return data.Response
+  async list (monetaryId: number): Promise<PaymentsResponse> {
+    return this.get(`user/${this.client.user.id.toString()}/monetary-account/${monetaryId}/payment`)
   }
 }
