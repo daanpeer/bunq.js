@@ -50,7 +50,7 @@ describe('Bunq api', () => {
   it('Should add the signed header', async () => {
     nock(API_URL)
       .post('/v1/device-server')
-      .reply(200, function(uri, requestBody) {
+      .reply(200, function (uri, requestBody) {
         assert.isDefined(this.req.headers, 'x-bunq-client-signature')
         return {}
       })
