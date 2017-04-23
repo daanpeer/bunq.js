@@ -1,9 +1,10 @@
-const Bunq = require('../lib/bunq').default
-const ursa = require('ursa')
-const config = require('./config.js')
+/* @flow */
+import Bunq from '../../lib'
+import ursa from 'ursa'
+import config from './config.js'
 
-async function generateKeyPair () {
-  const keyPair = ursa.generatePrivateKey(2048)
+const generateKeyPair = (): { public: string, private: string } => {
+  const keyPair: Object = ursa.generatePrivateKey(2048)
   return {
     public: keyPair.toPublicPem('utf8'),
     private: keyPair.toPrivatePem('utf8')
@@ -20,10 +21,9 @@ async function main () {
 
     const bunq = new Bunq(options)
     await bunq.installation()
-    await bunq.device(config.ipAddreses, 'Bunq example')
-    let sessionData = await bunq.session()
+    await bunq.device(config.ipAddresses, 'Bunq example')
+    await bunq.session()
 
-    bunq.setSessionToken(sessionData.token)
     const monetaryAccounts = await bunq.monetaryAccounts()
 
     const paymentCalls = []
