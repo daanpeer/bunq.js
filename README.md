@@ -1,5 +1,8 @@
+## NOTE: The library is far from complete not all API endpoints are implemented
+If you want to help feel free to do so :)
+
 # bunq.js
-This is an API client for the Bunq API.
+This is an API client for the [Bunq API](https://doc.bunq.com/).
 
 [![Build Status](https://travis-ci.org/daanpeer/bunq.js.svg?branch=master)](https://travis-ci.org/daanpeer/bunq.js)
 
