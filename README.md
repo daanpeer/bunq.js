@@ -9,9 +9,16 @@ This is an API client for the [Bunq API](https://doc.bunq.com/).
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 
-## Installation
-* Run `yarn install`
-* Make sure you got an API key from Bunq
+## Project set-up
+* Firstly run `yarn` in the root of the project
+* Then run `yarn build`
+* To run the example go to that directory and run `yarn` there
+* Then you can run this project by using `yarn start`
+
+## Other usefull commands
+* `yarn watch` This will watch the project for file changes and rebuilds the project
+* `yarn test` This will run the unit tests
+* `yarn test:watch` This will run the tests in watch mode
 
 
 ## Usage
