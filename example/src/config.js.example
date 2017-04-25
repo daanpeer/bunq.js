@@ -1,4 +1,8 @@
-module.exports = {
+/* @flow */
+const config: { apiKey: string, ipAddresses: Array<string> } = {
   apiKey: '',
-  ipAddreses: []
+  ipAddresses: [
+  ]
 }
+
+export { config as default }
