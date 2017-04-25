@@ -101,7 +101,7 @@ export default class Bunq implements BunqInterface {
     )
 
     const responseData = {
-      user: data.Response[2].UserCompany,
+      user: (data.Response[2].UserCompany !== undefined) ? data.Response[2].UserCompany : data.Response[2].UserPerson,
       token: data.Response[1].Token.token
     }
 
