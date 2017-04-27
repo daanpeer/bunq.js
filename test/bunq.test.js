@@ -15,17 +15,17 @@ const config = {
   }
 }
 
-const API_URL = 'https://sandbox.public.api.bunq.com'
+const API_URL = 'http://example.com'
 
 const bunqInstance = () => {
   const stub = sinon.stub({sign}, sign).returns('encrypted')
   const bunq = new Bunq(config)
   bunq.sign = stub
   bunq.user = {id: 123}
+  bunq.apiUrl = 'http://example.com'
   return bunq
 }
 
-// @todo disable sandbox url so no real request can be done
 // @todo split file into api file and basic bunq tests
 // @todo add tests for installation, device and session requests
 
@@ -44,7 +44,7 @@ describe('Bunq api', () => {
 
   it('Should switch to sandbox by default', () => {
     const bunq = new Bunq({apiKey: '123', keyPair: {public: '123', private: '123'}})
-    assert.equal(bunq.apiUrl, API_URL)
+    assert.equal(bunq.apiUrl, 'https://sandbox.public.api.bunq.com')
   })
 
   it('Should add the signed header', async () => {
